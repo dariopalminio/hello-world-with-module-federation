@@ -3,7 +3,7 @@ The hello-world-with-module-federation is an example of Micro Frontends with Mod
 
 Guides: 
 
-https://ogzhanolguncu.com/blog/micro-frontends-with-module-federation\
+https://ogzhanolguncu.com/blog/micro-frontends-with-module-federation
 
 https://www.npmjs.com/package/@pixability-ui/federated-types
 
