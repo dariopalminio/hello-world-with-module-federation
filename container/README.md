@@ -1,6 +1,4 @@
-Guides: 
-https://ogzhanolguncu.com/blog/micro-frontends-with-module-federation
-https://www.npmjs.com/package/@pixability-ui/federated-types
+
 
 # Getting Started with Create React App
 
