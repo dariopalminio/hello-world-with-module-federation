@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "webpack serve --open",
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack --config webpack.config.js",
     "serve": "serve dist -p 3000",
     "clean": "rm -rf dist",
     "make-types": "make-federated-types"

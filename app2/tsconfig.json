@@ -17,7 +17,6 @@
     "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*", 
-    "../container/node_modules/@types/__federated_types/*"
+    "src"
   ]
 }

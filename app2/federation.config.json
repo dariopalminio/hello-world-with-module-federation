@@ -1,0 +1,9 @@
+{
+    "name": "app2",
+    "exposes": {
+        "./AppTwo": "./src/components/AppTwo"
+    }
+} 
+
+
+

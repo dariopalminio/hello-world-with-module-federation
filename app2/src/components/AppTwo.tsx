@@ -2,14 +2,14 @@ import React, { useContext } from "react";
 //import { UserContext } from "container/ContextProvider";
 
 
-const AppOne = () => {
+const AppTwo = () => {
   //const { user } = useContext(UserContext);
 
   return (
     <div>
-      Hello World from Micro App One!
+      Hello World from Micro App Two!
     </div>
   );
 };
 
-export default AppOne;
+export default AppTwo;
