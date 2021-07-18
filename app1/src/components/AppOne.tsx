@@ -5,7 +5,8 @@ import React, { useContext } from "react";
  * Component
  * @returns JSX.Element 
  */
-const AppOne = () => {
+const AppOne: React.FC = () => {
+
   //const { user } = useContext(UserContext);
 
   return (

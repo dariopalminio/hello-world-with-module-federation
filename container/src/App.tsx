@@ -1,18 +1,9 @@
-import { FC, useState, useContext } from "react";
+import { useContext } from "react";
 import UserContext from "app1/UserContext"; //Context from micro app1
 import AppOne from "app1/AppOne"; //Component from micro app1
 import AppTwo from "app2/AppTwo"; //Component from micro app2
+import ContextProvider from "./ContextProvider";
 
-/**
- * Provider for Context
- */
-export const ContextProvider: FC = ({ children }) => {
-  const [user, setUser] = useState("");
-
-  return (
-    <UserContext.Provider value={{ user }}>{children}</UserContext.Provider>
-  );
-};
 
 /**
  * Main App

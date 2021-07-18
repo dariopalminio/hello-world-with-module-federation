@@ -1,9 +1,10 @@
+import React from "react";
 
 /**
  * Component
  * @returns JSX.Element 
  */
-const AppTwo = () => {
+const AppTwo: React.FC  = () => {
 
   return (
     <div>
