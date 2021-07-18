@@ -1,4 +1,4 @@
-# hello-world-with-module-federation
+# Hello world with Module Federation
 This repository is educational. The hello-world-with-module-federation is an example of Micro Frontends with Module Federation, React and Typescript. This a POC(Proof of Concept) project it may not look great, but that's not the point in our case. It's just a simple example of how to fetch components from micro-frontends and how to use a context state (which in our case is a user) from a micro-frontend. 
 
 # How do you create both applications?
