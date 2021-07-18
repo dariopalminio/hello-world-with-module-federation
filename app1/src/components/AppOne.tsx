@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
 //import { UserContext } from "container/ContextProvider";
 
-
+/**
+ * Component
+ * @returns JSX.Element 
+ */
 const AppOne = () => {
   //const { user } = useContext(UserContext);
 

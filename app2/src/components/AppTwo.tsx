@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-//import { UserContext } from "container/ContextProvider";
 
-
+/**
+ * Component
+ * @returns JSX.Element 
+ */
 const AppTwo = () => {
-  //const { user } = useContext(UserContext);
 
   return (
     <div>

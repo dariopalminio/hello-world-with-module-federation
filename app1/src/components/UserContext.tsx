@@ -5,6 +5,7 @@ export interface IUserContext {
     user: string
   };
 
+//Context<IUserContext>
 const UserContext = createContext<IUserContext>({user: 'Michael Jackson'});
 
 export default UserContext;

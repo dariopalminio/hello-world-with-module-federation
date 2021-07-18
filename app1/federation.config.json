@@ -1,7 +1,8 @@
 {
     "name": "app1",
     "exposes": {
-        "./UserContext": "./src/components/UserContext"
+        "./UserContext": "./src/components/UserContext",
+        "./AppOne": "./src/components/AppOne"
     }
 } 
 
