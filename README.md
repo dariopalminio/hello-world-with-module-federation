@@ -15,6 +15,8 @@ npx create-react-app container --template typescript
 
 yarn add html-webpack-plugin serve ts-loader webpack webpack-cli webpack-dev-server
 
+npm install --save react-error-boundary
+
 # How do you create app1 application?
 
 npx create-react-app app1 --template typescript
