@@ -1,0 +1,9 @@
+{
+    "name": "app3",
+    "exposes": {
+        "./AppTree": "./src/components/AppTree"
+    }
+} 
+
+
+
