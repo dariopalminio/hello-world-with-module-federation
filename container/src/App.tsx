@@ -30,7 +30,7 @@ const remoteApps: IRemoteApp[] = [
  */
 function App() {
   const { user } = useContext(UserContext); //Context from micro app1
-  const [remoteAppComponents, setRemoteAppComponents] = useState<any[]>([]);
+  const [remoteAppComponents, setRemoteAppComponents] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     //Dynamically load remote applications as components

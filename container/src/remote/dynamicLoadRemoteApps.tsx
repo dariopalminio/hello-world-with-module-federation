@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 import shortid from 'shortid';
-import RemoteApp from './IRemoteApp';
+import IRemoteApp from './IRemoteApp';
 
 // @ts-ignore
 const loadComponent = (scope, module) => {
@@ -52,10 +52,10 @@ const useDynamicScript = async (args) => {
 };
 
 /**
- *  Dynamically load applications array
+ *  Dynamically load remote-application components array
  */
-const dynamicLoadRemoteApps = (apps: RemoteApp[]) => {
-  const promises = apps.map(async (app: RemoteApp) => {
+const dynamicLoadRemoteApps = (apps: IRemoteApp[]): Promise<any> => {
+  const promises = apps.map(async (app: IRemoteApp) => {
     await useDynamicScript({ url: app.url });
 
     const Content = lazy(loadComponent(app.scope, app.module));
@@ -64,6 +64,21 @@ const dynamicLoadRemoteApps = (apps: RemoteApp[]) => {
   });
 
   return Promise.all(promises);
+};
+
+/**
+ * Dynamically load remote-application component
+ */
+export const dynamicLoadRemoteApp = (app: IRemoteApp): Promise<JSX.Element> => {
+  const asyncPromiseFunction = (async (app: IRemoteApp) => {
+    await useDynamicScript({ url: app.url });
+
+    const Content = lazy(loadComponent(app.scope, app.module));
+
+    return <Content key={shortid.generate()} name={app.scope} />;
+  });
+
+  return asyncPromiseFunction(app);
 };
 
 export default dynamicLoadRemoteApps;
