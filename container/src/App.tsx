@@ -3,7 +3,6 @@ import React, {
   useEffect,
   Suspense,
   useContext,
-  FunctionComponent,
 } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import IRemoteApp from "./remote/IRemoteApp";
