@@ -1,17 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  Suspense,
-  useContext,
-} from "react";
+import React, { useState, useEffect, Suspense } from "react";
+import ShowMessage from "./components/ShowMessage";
 import { ErrorBoundary } from "react-error-boundary";
 import IRemoteApp from "./remote/IRemoteApp";
 import dynamicLoadRemoteApps from "./remote/dynamicLoadRemoteApps";
 
-import ShowMessage from "./components/ShowMessage";
 
-// @ts-ignore
-import UserContext from "app1/UserContext"; //Context from micro app1
 // @ts-ignore
 //import UserContextProvider from "app1/UserContextProvider"; //Context from micro app1
 // @ts-ignore
@@ -33,23 +26,20 @@ const remoteApps: IRemoteApp[] = [
 ];
 
 /**
- * fabecerra@stefanini.com
  * Main App
  * Container of Micro-Frontends
  */
 function App() {
-  const { user } = useContext(UserContext); //Context from micro app1
   const [remoteAppComponents, setRemoteAppComponents] = useState<JSX.Element[]>(
     []
   );
 
   useEffect(() => {
-    console.log("App.useEffect start");
     //Dynamically load remote applications as components
     dynamicLoadRemoteApps(remoteApps).then(setRemoteAppComponents);
-    console.log("App.useEffect end");
   }, [remoteApps]);
 
+  //Component Catch: Response in case of error
   function errorFallback(e: { error: any; resetErrorBoundary: any }) {
     return (
       <div role="alert">
@@ -57,63 +47,65 @@ function App() {
         <pre>{e.error.message}</pre>
       </div>
     );
-  }
+  };
 
   const myErrorHandler = (error: Error, info: { componentStack: string }) => {
     // Do something with the error
     // E.g. log to an error logging client here
+    console.log("error:", error);
+    console.log("info:", info);
   };
 
+  
   return (
-    <ErrorBoundary FallbackComponent={errorFallback} onError={myErrorHandler}>
-      <Suspense fallback={<div>Loading...</div>}>
-        <UserContextProvider>
-          <div>
-            <h1>
-              Micro Frontends with Module Federation, React and Typescript
-            </h1>
+    <div>
+      <h1>Micro Frontends with Module Federation, React and Typescript</h1>
 
-            <div>Hello {user}, obtained from app1, in Container App.;</div>
+      <div>Hello from Container App.;</div>
+      <ErrorBoundary FallbackComponent={errorFallback} onError={myErrorHandler}>
+        <Suspense fallback={<div>Loading...</div>}>
+          <UserContextProvider>
+            <div>
+              <ErrorBoundary
+                FallbackComponent={errorFallback}
+                onError={myErrorHandler}
+              >
+                <Suspense fallback={<div>Loading...</div>}>
+                  <ShowMessage />
+                </Suspense>
+              </ErrorBoundary>
 
-            <ErrorBoundary
-              FallbackComponent={errorFallback}
-              onError={myErrorHandler}
-            >
-              <Suspense fallback={<div>Loading...</div>}>
-                <ShowMessage />
-              </Suspense>
-            </ErrorBoundary>
+              <ErrorBoundary
+                FallbackComponent={errorFallback}
+                onError={myErrorHandler}
+              >
+                <Suspense fallback={<div>Loading...</div>}>
+                  <AppOne />
+                </Suspense>
+              </ErrorBoundary>
 
-            <ErrorBoundary
-              FallbackComponent={errorFallback}
-              onError={myErrorHandler}
-            >
-              <Suspense fallback={<div>Loading...</div>}>
-                <AppOne />
-              </Suspense>
-            </ErrorBoundary>
+              <ErrorBoundary
+                FallbackComponent={errorFallback}
+                onError={myErrorHandler}
+              >
+                <Suspense fallback={<div>Loading...</div>}>
+                  <AppTwo />
+                </Suspense>
+              </ErrorBoundary>
 
-            <ErrorBoundary
-              FallbackComponent={errorFallback}
-              onError={myErrorHandler}
-            >
-              <Suspense fallback={<div>Loading...</div>}>
-                <AppTwo />
-              </Suspense>
-            </ErrorBoundary>
-
-            <ErrorBoundary
-              FallbackComponent={errorFallback}
-              onError={myErrorHandler}
-            >
-              <Suspense fallback="Loading content...">
-                {remoteAppComponents[0]}
-              </Suspense>
-            </ErrorBoundary>
-          </div>
-        </UserContextProvider>
-      </Suspense>
-    </ErrorBoundary>
+              <ErrorBoundary
+                FallbackComponent={errorFallback}
+                onError={myErrorHandler}
+              >
+                <Suspense fallback="Loading content...">
+                  {remoteAppComponents[0]}
+                </Suspense>
+              </ErrorBoundary>
+            </div>
+          </UserContextProvider>
+        </Suspense>
+      </ErrorBoundary>
+    </div>
   );
 }
 

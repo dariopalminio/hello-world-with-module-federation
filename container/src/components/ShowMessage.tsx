@@ -16,7 +16,6 @@ export const loadContextModule = async function () {
   }
 
  const ShowMessage: FunctionComponent = () => {
-    //const { user, setUser } = useContext(UserContext); //Context from micro app1
     const [UserContext, setUserContext] = useState<React.Context<any>>(React.createContext({}));
     const { user, setUser } = useContext(UserContext); //Context from micro app1
 
@@ -33,11 +32,10 @@ export const loadContextModule = async function () {
     }
 
     return (
-        <div>
-        Hello {user}, obtained from app1, in Container App.;
-        <button onClick={changeUser}>Change User to Goku</button>;
-       
-    </div>
+      <div>
+      Hello {user}, obtained from app1, in Container App.;
+      <button onClick={changeUser}>Change User to Goku</button>;
+      </div>
     )};
   
   export default ShowMessage;
