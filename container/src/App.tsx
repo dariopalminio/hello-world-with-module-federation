@@ -1,14 +1,18 @@
-import React, { useContext, useState, useEffect, Suspense } from "react";
+import React, {  useState, useEffect, Suspense, useContext } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import IRemoteApp from "./remote/IRemoteApp";
 import dynamicLoadRemoteApps from "./remote/dynamicLoadRemoteApps";
 
-//If do not use @pixability-ui/federated-types then suppress errors using ’//@ts-ignore’ comments
-//A ’//@ts-ignore’ comment suppresses all errors that originate on the following line.
+import ShowMessage from "./components/ShowMessage";
+
+// @ts-ignore
 import UserContext from "app1/UserContext"; //Context from micro app1
+// @ts-ignore
+import UserContextProvider from "app1/UserContextProvider"; //Context from micro app1
 
 //Component from micro app1
 //import AppOne from "app1/AppOne";
+// @ts-ignore
 const AppOne = React.lazy(() => import("app1/AppOne"));
 
 //Component from micro app2
@@ -16,7 +20,6 @@ const AppOne = React.lazy(() => import("app1/AppOne"));
 const AppTwo = React.lazy(() => import("app2/AppTwo"));
 //const {default: AppTwo} = await import("app2/AppTwo");
 
-import ContextProvider from "./ContextProvider";
 
 //Remote Apps array
 const remoteApps: IRemoteApp[] = [
@@ -33,10 +36,12 @@ function App() {
   const [remoteAppComponents, setRemoteAppComponents] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
+    
     //Dynamically load remote applications as components
     dynamicLoadRemoteApps(remoteApps).then(setRemoteAppComponents);
   }, [remoteApps]);
 
+ 
   function errorFallback(e: { error: any; resetErrorBoundary: any }) {
     return (
       <div role="alert">
@@ -52,10 +57,26 @@ function App() {
   };
 
   return (
-    <ContextProvider>
+    <UserContextProvider>
       <div>
-        <h1>Micro Frontends with Module Federation, React and Typescript</h1>
-        Hello {user}, obtained from app1, in Container App.
+      
+      <h1>Micro Frontends with Module Federation, React and Typescript</h1>
+
+
+      <div>
+            Hello {user}, obtained from app1, in Container App.;
+            
+        </div>
+
+        <ErrorBoundary
+          FallbackComponent={errorFallback}
+          onError={myErrorHandler}
+        >
+          <Suspense fallback={<div>Loading...</div>}>
+        <ShowMessage />
+        </Suspense>
+        </ErrorBoundary>
+
 
         <ErrorBoundary
           FallbackComponent={errorFallback}
@@ -85,7 +106,7 @@ function App() {
         </ErrorBoundary>
         
       </div>
-    </ContextProvider>
+    </UserContextProvider>
   );
 }
 

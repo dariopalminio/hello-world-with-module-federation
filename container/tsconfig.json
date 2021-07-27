@@ -19,5 +19,6 @@
   "include": [
     "src/**/*", 
     "../app1/node_modules/@types/__federated_types/*",
-    "../app2/node_modules/@types/__federated_types/*", "src/ContextProvider.tsx"  ]
+    "../app2/node_modules/@types/__federated_types/*"  ],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

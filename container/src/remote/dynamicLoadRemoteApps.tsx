@@ -81,4 +81,25 @@ export const dynamicLoadRemoteApp = (app: IRemoteApp): Promise<JSX.Element> => {
   return asyncPromiseFunction(app);
 };
 
+export const dynamicLoadModule = (app: IRemoteApp): Promise<any> => {
+  const asyncPromiseFunction = (async (app: IRemoteApp) => {
+    await useDynamicScript({ url: app.url });
+
+    const Content = loadComponent(app.scope, app.module);
+
+    return Content;
+  });
+
+  return asyncPromiseFunction(app);
+};
+
+export const loadModule = async function (name: string) {
+  return await import(name).then(({ default: UserContext }) => {
+    return UserContext;
+  }).catch(error => {
+    console.log("Can't Load!!!");
+    throw Error("Can't Load!!!");
+  });
+}
+
 export default dynamicLoadRemoteApps;
