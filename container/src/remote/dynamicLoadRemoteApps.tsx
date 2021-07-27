@@ -93,13 +93,5 @@ export const dynamicLoadModule = (app: IRemoteApp): Promise<any> => {
   return asyncPromiseFunction(app);
 };
 
-export const loadModule = async function (name: string) {
-  return await import(name).then(({ default: UserContext }) => {
-    return UserContext;
-  }).catch(error => {
-    console.log("Can't Load!!!");
-    throw Error("Can't Load!!!");
-  });
-}
 
 export default dynamicLoadRemoteApps;

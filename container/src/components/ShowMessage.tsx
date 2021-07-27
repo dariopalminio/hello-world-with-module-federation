@@ -1,13 +1,33 @@
-import { FunctionComponent, useContext, useState } from "react";
+import React, { FunctionComponent, useContext, useState, useEffect } from "react";
 
 //If do not use @pixability-ui/federated-types then suppress errors using ’//@ts-ignore’ comments
 //A ’//@ts-ignore’ comment suppresses all errors that originate on the following line.
 //@ts-ignore
-import UserContext from "app1/UserContext"; //Context from micro app1
+//import UserContext from "app1/UserContext"; //Context from micro app1
+
+export const loadContextModule = async function () {
+    //@ts-ignore
+    return await import("app1/UserContext").then(({ default: UserContext }) => {
+      return UserContext;
+    }).catch(error => {
+      console.log("Can't Load !!!", error);
+      throw Error("Can't Load !!!");
+    });
+  }
 
  const ShowMessage: FunctionComponent = () => {
+    //const { user, setUser } = useContext(UserContext); //Context from micro app1
+    const [UserContext, setUserContext] = useState<React.Context<any>>(React.createContext({}));
     const { user, setUser } = useContext(UserContext); //Context from micro app1
-    
+
+    useEffect(() => {
+        //Dynamically load remote applications as components
+        loadContextModule().then(setUserContext).catch(err => {
+            console.log("Exceptiooooon!!!");
+          }
+        );
+    }, [UserContext]);
+      
     function changeUser() {
         setUser("Goku");
     }
