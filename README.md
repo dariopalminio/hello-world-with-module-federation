@@ -52,10 +52,12 @@ yarn start
 
 
 
-# Guides: 
+# Guides and references: 
 
 https://ogzhanolguncu.com/blog/micro-frontends-with-module-federation
 
 https://www.npmjs.com/package/@pixability-ui/federated-types
 
 https://github.com/ogzhanolguncu/react-typescript-module-federation
+
+https://github.com/fabecerra/mfe-poc-bluex
