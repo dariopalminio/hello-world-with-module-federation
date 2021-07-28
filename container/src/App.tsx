@@ -58,7 +58,7 @@ function App() {
 
   
   return (
-    <div>
+    <div style={{border: '2px solid yellow'}}>
       <h1>Micro Frontends with Module Federation, React and Typescript</h1>
 
       <div>Hello from Container App.;</div>

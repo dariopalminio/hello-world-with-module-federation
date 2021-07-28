@@ -7,7 +7,7 @@ import React from "react";
 const AppTree: React.FC  = (): JSX.Element => {
 
   return (
-    <div>
+    <div style={{border: '2px solid green'}}>
       Hello World from Micro App Tree!
     </div>
   );

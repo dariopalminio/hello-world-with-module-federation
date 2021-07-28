@@ -81,17 +81,18 @@ export const dynamicLoadRemoteApp = (app: IRemoteApp): Promise<JSX.Element> => {
   return asyncPromiseFunction(app);
 };
 
-export const dynamicLoadModule = (app: IRemoteApp): Promise<any> => {
-  const asyncPromiseFunction = (async (app: IRemoteApp) => {
-    await useDynamicScript({ url: app.url });
-
-    const Content = loadComponent(app.scope, app.module);
-
-    return Content;
+/**
+ * Import Context module
+ * @returns Promise of React.Context<any> (as UserContext)
+ */
+export const loadContextModule = async function () {
+  //@ts-ignore
+  return await import("app1/UserContext").then(({ default: UserContext }) => {
+    return UserContext;
+  }).catch(error => {
+    console.log("Can't Load !!!", error);
+    throw error;
   });
-
-  return asyncPromiseFunction(app);
 };
-
 
 export default dynamicLoadRemoteApps;

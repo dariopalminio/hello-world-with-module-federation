@@ -37,6 +37,10 @@ module.exports = {
         // './MFE1': './src/MFE1',
        // AppTwo: './src/components/AppTwo',
      // },
+     remotes: {
+      //name: '<name>@http://localhost:port/<filename>',
+      app1: 'app1', //"http://localhost:3001/app1.js"
+     },
       shared: {
         ...deps,
         react: { singleton: true, eager: true, requiredVersion: deps.react },
