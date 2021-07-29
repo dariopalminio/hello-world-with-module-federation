@@ -10,7 +10,7 @@ const AppOne: React.FC = (): JSX.Element => {
   //const { user } = useContext(UserContext);
 
   return (
-    <div style={{border: '2px solid blue'}}>
+    <div style={{border: '2px solid blue', padding: '1em'}}>
       Hello World from Micro App One!
     </div>
   );

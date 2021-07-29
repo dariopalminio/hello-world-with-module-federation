@@ -2,6 +2,7 @@ import React, { Suspense } from "react";
 import AppTwo from "./components/AppTwo";
 import { ErrorBoundary } from "react-error-boundary";
 
+// Import remote context
 // @ts-ignore
 const UserContextProvider = React.lazy(() => import("app1/UserContextProvider"));
 

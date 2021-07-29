@@ -1,7 +1,8 @@
 {
     "name": "app3",
     "exposes": {
-        "./AppTree": "./src/components/AppTree"
+        "./AppTree": "./src/components/AppTree",
+        "./Menu": "./src/components/Menu"
     }
 } 
 

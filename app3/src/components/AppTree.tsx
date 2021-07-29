@@ -1,4 +1,6 @@
 import React from "react";
+import Content from "./Content";
+
 
 /**
  * Component
@@ -7,8 +9,9 @@ import React from "react";
 const AppTree: React.FC  = (): JSX.Element => {
 
   return (
-    <div style={{border: '2px solid green'}}>
-      Hello World from Micro App Tree!
+
+    <div style={{border: '2px solid green', padding: '1em'}}>
+      <Content />
     </div>
   );
 };

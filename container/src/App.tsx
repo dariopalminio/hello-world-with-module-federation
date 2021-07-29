@@ -3,7 +3,8 @@ import ShowMessage from "./components/ShowMessage";
 import { ErrorBoundary } from "react-error-boundary";
 import IRemoteApp from "./remote/IRemoteApp";
 import dynamicLoadRemoteApps from "./remote/dynamicLoadRemoteApps";
-
+import { BrowserRouter as Router } from "react-router-dom";
+import diagram from "./images/diagram.png";
 
 // @ts-ignore
 //import UserContextProvider from "app1/UserContextProvider"; //Context from micro app1
@@ -23,6 +24,7 @@ const AppTwo = React.lazy(() => import("app2/AppTwo"));
 //Remote Apps array
 const remoteApps: IRemoteApp[] = [
   { scope: "app3", module: "./AppTree", url: "http://localhost:3003/app3.js" },
+  { scope: "app3", module: "./Menu", url: "http://localhost:3003/app3.js" },
 ];
 
 /**
@@ -58,14 +60,16 @@ function App() {
 
   
   return (
-    <div style={{border: '2px solid yellow'}}>
-      <h1>Micro Frontends with Module Federation, React and Typescript</h1>
-
+    <div>
+      <div style={{border: '2px solid grey', padding: '1em'}}>
+      <h1>Hello World with Module Federation</h1>
+      <h2>Micro Frontends with Module Federation, React and Typescript</h2>
       <div>Hello from Container App.;</div>
       <ErrorBoundary FallbackComponent={errorFallback} onError={myErrorHandler}>
         <Suspense fallback={<div>Loading...</div>}>
           <UserContextProvider>
             <div>
+              Context from app2:
               <ErrorBoundary
                 FallbackComponent={errorFallback}
                 onError={myErrorHandler}
@@ -75,6 +79,7 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
 
+              Content from app1:
               <ErrorBoundary
                 FallbackComponent={errorFallback}
                 onError={myErrorHandler}
@@ -84,6 +89,7 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
 
+              Content from app2:
               <ErrorBoundary
                 FallbackComponent={errorFallback}
                 onError={myErrorHandler}
@@ -93,6 +99,18 @@ function App() {
                 </Suspense>
               </ErrorBoundary>
 
+              <Router>
+              Menú from app3:
+              <ErrorBoundary
+                FallbackComponent={errorFallback}
+                onError={myErrorHandler}
+              >
+                <Suspense fallback="Loading content...">
+                  {remoteAppComponents[1]}
+                </Suspense>
+              </ErrorBoundary>
+           
+              Content from app3:
               <ErrorBoundary
                 FallbackComponent={errorFallback}
                 onError={myErrorHandler}
@@ -101,10 +119,19 @@ function App() {
                   {remoteAppComponents[0]}
                 </Suspense>
               </ErrorBoundary>
+              </Router>
+
             </div>
           </UserContextProvider>
         </Suspense>
       </ErrorBoundary>
+      </div>
+
+      <div>
+        <div>Architecture diagram:</div>
+        <img src={String(diagram)} alt="diagram" style={{width:"60%", height:"60%"}}/>
+      </div>
+
     </div>
   );
 }
